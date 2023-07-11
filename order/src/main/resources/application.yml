@@ -1,4 +1,10 @@
 spring:
+  application:
+    name: gulimall-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.237.128:8848
   datasource:
     username: root
     password: root
@@ -20,7 +26,7 @@ mybatis-plus:
       logic-delete-value: 1
       logic-not-delete-value: 0
 server:
-  port: 10301
+  port: 10031
 logging:
   level:
     com.atguigu.gulimall: debug
