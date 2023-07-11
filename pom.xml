@@ -16,11 +16,15 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>common</module>
         <module>product</module>
+        <module>ware</module>
         <module>coupon</module>
         <module>member</module>
-        <module>ware</module>
         <module>order</module>
+        <module>renren-fast</module>
+        <module>renren-generator</module>
+
     </modules>
 
 </project>
