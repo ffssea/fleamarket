@@ -36,7 +36,7 @@ public class CategoryController {
     @RequestMapping("/list/tree")
     public R list(){
         List<CategoryEntity> categoryEntities = categoryService.listWithTree();
-        return R.ok().put("categoryEntities", categoryEntities);
+        return R.ok().put("data", categoryEntities);
     }
 
 
@@ -78,6 +78,19 @@ public class CategoryController {
     public R update(@RequestBody CategoryEntity category){
 		categoryService.updateById(category);
 
+        return R.ok();
+    }
+
+    /**
+     * 拖拽排序
+     * @param categoryArray
+     * @return
+     */
+    @RequestMapping("/update/sort")
+    public R updateSort(@RequestBody CategoryEntity[] categoryArray){
+        for (CategoryEntity categoryEntity : categoryArray) {
+            categoryService.updateById(categoryEntity);
+        }
         return R.ok();
     }
 

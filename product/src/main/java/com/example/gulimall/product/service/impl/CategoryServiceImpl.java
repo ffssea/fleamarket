@@ -1,10 +1,9 @@
 package com.example.gulimall.product.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -17,7 +16,7 @@ import com.example.gulimall.product.dao.CategoryDao;
 import com.example.gulimall.product.entity.CategoryEntity;
 import com.example.gulimall.product.service.CategoryService;
 
-
+@Slf4j
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
 
@@ -42,6 +41,24 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         }).collect(Collectors.toList());
 
         return menuLevel1;
+    }
+
+    @Override
+    public Long[] findCatelogPath(Long catelogId) {
+        List<Long> path = findParentPath(catelogId,  new ArrayList<>());
+        Collections.reverse(path);
+        log.info("findCatelogPath: ",path.toString());
+        return path.toArray(new Long[0]);
+    }
+
+    private List<Long> findParentPath(Long catelogId, List<Long> path) {
+        path.add(catelogId);
+        CategoryEntity categoryEntity = this.getById(catelogId);
+        if(categoryEntity!=null && categoryEntity.getParentCid()!=0){
+            findParentPath(categoryEntity.getParentCid(), path);
+        }
+        return path;
+
     }
 
     private List<CategoryEntity> getChildren(CategoryEntity root, List<CategoryEntity> all){

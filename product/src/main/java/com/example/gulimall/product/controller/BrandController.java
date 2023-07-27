@@ -1,11 +1,15 @@
 package com.example.gulimall.product.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.common.utils.PageUtils;
 import com.example.common.utils.R;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.gulimall.product.entity.BrandEntity;
 import com.example.gulimall.product.service.BrandService;
 
+import javax.validation.Valid;
 
 
 /**
@@ -29,8 +34,6 @@ import com.example.gulimall.product.service.BrandService;
 public class BrandController {
     @Autowired
     private BrandService brandService;
-
-
 
     /**
      * 列表
@@ -49,7 +52,6 @@ public class BrandController {
     @RequestMapping("/info/{brandId}")
     public R info(@PathVariable("brandId") Long brandId){
 		BrandEntity brand = brandService.getById(brandId);
-
         return R.ok().put("brand", brand);
     }
 
@@ -57,8 +59,20 @@ public class BrandController {
      * 保存
      */
     @RequestMapping("/save")
-    public R save(@RequestBody BrandEntity brand){
-		brandService.save(brand);
+    public R save(@Valid @RequestBody BrandEntity brand /*,BindingResult bindingResult*/){
+        /* if(bindingResult.hasErrors()){
+           Map<String, String> map = new HashMap<>();
+           bindingResult.getFieldErrors().forEach(item -> {
+               String message = item.getDefaultMessage();
+               String field = item.getField();
+               map.put(field, message);
+
+           });
+           return R.error(400, "数据不合法").put("data", map);
+       } else {
+		    brandService.save(brand);
+       }*/
+        brandService.save(brand);
 
         return R.ok();
     }
@@ -70,6 +84,12 @@ public class BrandController {
     public R update(@RequestBody BrandEntity brand){
 		brandService.updateById(brand);
 
+        return R.ok();
+    }
+
+    @RequestMapping("/update/status")
+    public R updateStatus(@RequestBody BrandEntity brand){
+        brandService.updateById(brand);
         return R.ok();
     }
 
