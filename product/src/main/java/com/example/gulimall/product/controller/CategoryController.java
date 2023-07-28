@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import com.example.common.utils.PageUtils;
 import com.example.common.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,8 +77,7 @@ public class CategoryController {
      */
     @RequestMapping("/update")
     public R update(@RequestBody CategoryEntity category){
-		categoryService.updateById(category);
-
+        categoryService.updateCascade(category);
         return R.ok();
     }
 

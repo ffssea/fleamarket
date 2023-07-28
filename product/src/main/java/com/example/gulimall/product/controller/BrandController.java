@@ -1,25 +1,15 @@
 package com.example.gulimall.product.controller;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.common.utils.PageUtils;
 import com.example.common.utils.R;
-import lombok.val;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.example.gulimall.product.entity.BrandEntity;
 import com.example.gulimall.product.service.BrandService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Arrays;
+import java.util.Map;
 
 
 /**
@@ -72,7 +62,7 @@ public class BrandController {
        } else {
 		    brandService.save(brand);
        }*/
-        brandService.save(brand);
+        brandService.updateDetail(brand);
 
         return R.ok();
     }
