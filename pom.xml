@@ -23,6 +23,7 @@
         <module>coupon</module>
         <module>member</module>
         <module>order</module>
+        <module>search</module>
 <!--        <module>renren-fast</module>-->
 <!--        <module>renren-generator</module>-->
         <module>thirdparty</module>

@@ -1,20 +1,18 @@
 package com.example.gulimall.product.controller;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
 import com.example.common.utils.PageUtils;
 import com.example.common.utils.R;
 import com.example.gulimall.product.entity.ProductAttrValueEntity;
+import com.example.gulimall.product.service.AttrService;
 import com.example.gulimall.product.service.ProductAttrValueService;
 import com.example.gulimall.product.vo.AttrRespVo;
 import com.example.gulimall.product.vo.AttrVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.gulimall.product.entity.AttrEntity;
-import com.example.gulimall.product.service.AttrService;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 
 
@@ -44,6 +42,7 @@ public class AttrController {
 
         return R.ok().put("data",entities);
     }
+
 
     //product/attr/sale/list/0?
     ///product/attr/base/list/{catelogId}

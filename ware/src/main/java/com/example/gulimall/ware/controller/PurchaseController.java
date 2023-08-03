@@ -1,19 +1,15 @@
 package com.example.gulimall.ware.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.example.gulimall.ware.entity.PurchaseEntity;
-import com.example.gulimall.ware.service.PurchaseService;
 import com.example.common.utils.PageUtils;
 import com.example.common.utils.R;
+import com.example.gulimall.ware.entity.PurchaseEntity;
+import com.example.gulimall.ware.service.PurchaseService;
+import com.example.gulimall.ware.vo.PurchaseDoneVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.Map;
 
 
 
@@ -29,6 +25,14 @@ import com.example.common.utils.R;
 public class PurchaseController {
     @Autowired
     private PurchaseService purchaseService;
+
+    @PostMapping(value = "/done")
+    public R finish(@RequestBody PurchaseDoneVo doneVo) {
+
+        purchaseService.done(doneVo);
+
+        return R.ok();
+    }
 
     /**
      * 列表

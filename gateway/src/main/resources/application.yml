@@ -2,6 +2,13 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: search_route
+          uri: lb://gulimall-search
+          predicates:
+            - Path=/api/search/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*),/$\{segment}
+
         - id: order_route
           uri: lb://gulimall-order
           predicates:
