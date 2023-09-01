@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * 商品库存
- * 
+ *
  * @author yql
  * @email bugduckyy@gmail.com
  * @date 2023-07-11 20:47:38

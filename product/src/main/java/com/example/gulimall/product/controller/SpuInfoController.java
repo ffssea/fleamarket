@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.Map;
 
 
-
 /**
  * spu信息
  *
@@ -31,7 +30,7 @@ public class SpuInfoController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:spuinfo:list")
-    public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = spuInfoService.queryPageByCondition(params);
 
         return R.ok().put("page", page);
@@ -39,18 +38,18 @@ public class SpuInfoController {
 
     // 上架
     @RequestMapping("/{spuId}/up")
-    public R up(@PathVariable("spuId") Long spuId){
+    public R up(@PathVariable("spuId") Long spuId) {
         spuInfoService.up(spuId);
         return R.ok();
     }
-    
+
 
     /**
      * 信息
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("product:spuinfo:info")
-    public R info(@PathVariable("id") Long id){
+    public R info(@PathVariable("id") Long id) {
         SpuInfoEntity spuInfo = spuInfoService.getById(id);
 
         return R.ok().put("spuInfo", spuInfo);
@@ -61,8 +60,8 @@ public class SpuInfoController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:spuinfo:save")
-    public R save(@RequestBody SpuSaveVo vo){
-        //spuInfoService.save(spuInfo);
+    public R save(@RequestBody SpuSaveVo vo) {
+        // spuInfoService.save(spuInfo);
 
         spuInfoService.saveSpuInfo(vo);
 
@@ -74,7 +73,7 @@ public class SpuInfoController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("product:spuinfo:update")
-    public R update(@RequestBody SpuInfoEntity spuInfo){
+    public R update(@RequestBody SpuInfoEntity spuInfo) {
         spuInfoService.updateById(spuInfo);
 
         return R.ok();
@@ -85,7 +84,7 @@ public class SpuInfoController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("product:spuinfo:delete")
-    public R delete(@RequestBody Long[] ids){
+    public R delete(@RequestBody Long[] ids) {
         spuInfoService.removeByIds(Arrays.asList(ids));
 
         return R.ok();

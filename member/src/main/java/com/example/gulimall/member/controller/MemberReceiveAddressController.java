@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.Map;
 
 
-
 /**
  * 会员收货地址
  *
@@ -30,7 +29,7 @@ public class MemberReceiveAddressController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("user:memberreceiveaddress:list")
-    public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = memberReceiveAddressService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -42,8 +41,8 @@ public class MemberReceiveAddressController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("user:memberreceiveaddress:info")
-    public R info(@PathVariable("id") Long id){
-		MemberReceiveAddressEntity memberReceiveAddress = memberReceiveAddressService.getById(id);
+    public R info(@PathVariable("id") Long id) {
+        MemberReceiveAddressEntity memberReceiveAddress = memberReceiveAddressService.getById(id);
 
         return R.ok().put("memberReceiveAddress", memberReceiveAddress);
     }
@@ -53,8 +52,8 @@ public class MemberReceiveAddressController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("user:memberreceiveaddress:save")
-    public R save(@RequestBody MemberReceiveAddressEntity memberReceiveAddress){
-		memberReceiveAddressService.save(memberReceiveAddress);
+    public R save(@RequestBody MemberReceiveAddressEntity memberReceiveAddress) {
+        memberReceiveAddressService.save(memberReceiveAddress);
 
         return R.ok();
     }
@@ -64,8 +63,8 @@ public class MemberReceiveAddressController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("user:memberreceiveaddress:update")
-    public R update(@RequestBody MemberReceiveAddressEntity memberReceiveAddress){
-		memberReceiveAddressService.updateById(memberReceiveAddress);
+    public R update(@RequestBody MemberReceiveAddressEntity memberReceiveAddress) {
+        memberReceiveAddressService.updateById(memberReceiveAddress);
 
         return R.ok();
     }
@@ -75,8 +74,8 @@ public class MemberReceiveAddressController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("user:memberreceiveaddress:delete")
-    public R delete(@RequestBody Long[] ids){
-		memberReceiveAddressService.removeByIds(Arrays.asList(ids));
+    public R delete(@RequestBody Long[] ids) {
+        memberReceiveAddressService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

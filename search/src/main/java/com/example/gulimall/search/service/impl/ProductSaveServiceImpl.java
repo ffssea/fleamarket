@@ -1,5 +1,6 @@
 package com.example.gulimall.search.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.example.common.to.SkuEsModel;
 import com.example.gulimall.search.config.ElasticSearchConfig;
 import com.example.gulimall.search.constant.EsConstant;
@@ -12,7 +13,7 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.alibaba.fastjson.JSON;
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -28,10 +29,10 @@ public class ProductSaveServiceImpl implements ProductSaveService {
     public boolean productStatusUp(List<SkuEsModel> skuEsModels) throws IOException {
 
         // 1.在es中建立索引，建立号映射关系（doc/json/product-mapping.json）
-        //2. 在ES中保存这些数据
+        // 2. 在ES中保存这些数据
         BulkRequest bulkRequest = new BulkRequest();
         for (SkuEsModel skuEsModel : skuEsModels) {
-            //构造保存请求
+            // 构造保存请求
             IndexRequest indexRequest = new IndexRequest(EsConstant.PRODUCT_INDEX);
             indexRequest.id(skuEsModel.getSkuId().toString());
             String jsonString = JSON.toJSONString(skuEsModel);
@@ -42,14 +43,14 @@ public class ProductSaveServiceImpl implements ProductSaveService {
         // 批量保存数据
         BulkResponse bulk = esRestClient.bulk(bulkRequest, ElasticSearchConfig.COMMON_OPTIONS);
 
-        //TODO 如果批量错误
+        // TODO 如果批量错误
         boolean hasFailures = bulk.hasFailures();
 
         List<String> collect = Arrays.asList(bulk.getItems()).stream().map(item -> {
             return item.getId();
         }).collect(Collectors.toList());
 
-        log.info("商品上架完成：{}",collect);
+        log.info("商品上架完成：{}", collect);
 
         return hasFailures;
     }

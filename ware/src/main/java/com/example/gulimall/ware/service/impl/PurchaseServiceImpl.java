@@ -45,6 +45,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
 
     /**
      * 完成采购单
+     *
      * @param doneVo
      */
     @Override
@@ -52,7 +53,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
 
         Long id = doneVo.getId();
 
-        //1、改变采购项的状态
+        // 1、改变采购项的状态
         Boolean flag = true;
         List<PurchaseItemDoneVo> items = doneVo.getItems();
         List<PurchaseDetailEntity> updates = new ArrayList<>();
@@ -64,11 +65,11 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
                 purchaseDetailEntity.setStatus(item.getStatus());
             } else {
                 purchaseDetailEntity.setStatus(WareConstant.PurchaseDetailStatusEnum.FINISH.getCode());
-                //3、将成功采购的进行入库
-                //查出当前采购项的详细信息
-                //PurchaseDetailEntity entity = purchaseDetailService.getById(item.getItemId());
+                // 3、将成功采购的进行入库
+                // 查出当前采购项的详细信息
+                // PurchaseDetailEntity entity = purchaseDetailService.getById(item.getItemId());
                 PurchaseDetailEntity entity = purchaseDetailService.getById(item.getItemId());
-                wareSkuService.addStock(entity.getSkuId(),entity.getWareId(),entity.getSkuNum());
+                wareSkuService.addStock(entity.getSkuId(), entity.getWareId(), entity.getSkuNum());
 
             }
             purchaseDetailEntity.setId(item.getItemId());
@@ -76,13 +77,13 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
             updates.add(purchaseDetailEntity);
         }
 
-        //批量更新
+        // 批量更新
         purchaseDetailService.updateBatchById(updates);
 
-        //2、改变采购单状态
+        // 2、改变采购单状态
         PurchaseEntity purchaseEntity = new PurchaseEntity();
         purchaseEntity.setId(id);
-        purchaseEntity.setStatus(flag?WareConstant.PurchaseStatusEnum.FINISH.getCode():WareConstant.PurchaseStatusEnum.HASERROR.getCode());
+        purchaseEntity.setStatus(flag ? WareConstant.PurchaseStatusEnum.FINISH.getCode() : WareConstant.PurchaseStatusEnum.HASERROR.getCode());
         purchaseEntity.setUpdateTime(new Date());
         this.updateById(purchaseEntity);
 

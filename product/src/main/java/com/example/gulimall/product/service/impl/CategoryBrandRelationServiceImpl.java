@@ -51,7 +51,7 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
     public void saveDetail(CategoryBrandRelationEntity categoryBrandRelation) {
         Long brandId = categoryBrandRelation.getBrandId();
         Long catelogId = categoryBrandRelation.getCatelogId();
-        //1、查询详细名字
+        // 1、查询详细名字
         BrandEntity brandEntity = brandDao.selectById(brandId);
         CategoryEntity categoryEntity = categoryDao.selectById(catelogId);
 
@@ -67,12 +67,12 @@ public class CategoryBrandRelationServiceImpl extends ServiceImpl<CategoryBrandR
         CategoryBrandRelationEntity relationEntity = new CategoryBrandRelationEntity();
         relationEntity.setBrandId(brandId);
         relationEntity.setBrandName(name);
-        this.update(relationEntity,new UpdateWrapper<CategoryBrandRelationEntity>().eq("brand_id",brandId));
+        this.update(relationEntity, new UpdateWrapper<CategoryBrandRelationEntity>().eq("brand_id", brandId));
     }
 
     @Override
     public void updateCategory(Long catId, String name) {
-        this.baseMapper.updateCategory(catId,name);
+        this.baseMapper.updateCategory(catId, name);
     }
 
     @Override

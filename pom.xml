@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>gulimall</artifactId>
+    <artifactId>fleamarket</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gulimall</name>
-    <description>gulimall</description>
+    <name>fleamarket</name>
+    <description>fleamarket</description>
     <packaging>pom</packaging>
 
     <modules>
@@ -24,8 +24,8 @@
         <module>member</module>
         <module>order</module>
         <module>search</module>
-<!--        <module>renren-fast</module>-->
-<!--        <module>renren-generator</module>-->
+        <module>renren-fast</module>
+        <module>renren-generator</module>
         <module>thirdparty</module>
 
     </modules>

@@ -239,7 +239,7 @@ public class MinioUtils {
      */
     @SneakyThrows(Exception.class)
     public ObjectWriteResponse uploadFile(String bucketName, MultipartFile file, String objectName, String contentType) {
-        try(InputStream inputStream = file.getInputStream()) {
+        try (InputStream inputStream = file.getInputStream()) {
             return minioClient.putObject(
                     PutObjectArgs.builder()
                             .bucket(bucketName)
@@ -260,7 +260,7 @@ public class MinioUtils {
      */
     public ObjectWriteResponse uploadImage(String bucketName, String imageBase64, String imageName) throws IOException {
         if (!StringUtils.isEmpty(imageBase64)) {
-            try(InputStream in = base64ToInputStream(imageBase64)){
+            try (InputStream in = base64ToInputStream(imageBase64)) {
                 String newName = System.currentTimeMillis() + "_" + imageName + ".jpg";
                 String year = String.valueOf(new Date().getYear());
                 String month = String.valueOf(new Date().getMonth());

@@ -1,8 +1,8 @@
 /**
  * Copyright (c) 2016-2019 人人开源 All rights reserved.
- *
+ * <p>
  * https://www.renren.io
- *
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -37,12 +37,12 @@ public class JwtUtils {
      */
     public String generateToken(long userId) {
         Date nowDate = new Date();
-        //过期时间
+        // 过期时间
         Date expireDate = new Date(nowDate.getTime() + expire * 1000);
 
         return Jwts.builder()
                 .setHeaderParam("typ", "JWT")
-                .setSubject(userId+"")
+                .setSubject(userId + "")
                 .setIssuedAt(nowDate)
                 .setExpiration(expireDate)
                 .signWith(SignatureAlgorithm.HS512, secret)
@@ -55,7 +55,7 @@ public class JwtUtils {
                     .setSigningKey(secret)
                     .parseClaimsJws(token)
                     .getBody();
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.debug("validate is token error ", e);
             return null;
         }
@@ -63,7 +63,7 @@ public class JwtUtils {
 
     /**
      * token是否过期
-     * @return  true：过期
+     * @return true：过期
      */
     public boolean isTokenExpired(Date expiration) {
         return expiration.before(new Date());

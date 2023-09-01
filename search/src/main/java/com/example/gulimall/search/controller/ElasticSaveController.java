@@ -1,8 +1,8 @@
 package com.example.gulimall.search.controller;
 
+import com.example.common.exception.BizCodeEnum;
 import com.example.common.to.SkuEsModel;
 import com.example.common.utils.R;
-import com.example.common.exception.BizCodeEnum;
 import com.example.gulimall.search.service.ProductSaveService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,21 +24,22 @@ public class ElasticSaveController {
 
     /**
      * 上架商品
+     *
      * @param skuEsModels
      * @return
      */
     @PostMapping(value = "/product")
     public R productStatusUp(@RequestBody List<SkuEsModel> skuEsModels) {
 
-        boolean status=false;
+        boolean status = false;
         try {
             status = productSaveService.productStatusUp(skuEsModels);
         } catch (IOException e) {
-            return R.error(BizCodeEnum.PRODUCT_UP_EXCEPTION.getCode(),BizCodeEnum.PRODUCT_UP_EXCEPTION.getMsg());
+            return R.error(BizCodeEnum.PRODUCT_UP_EXCEPTION.getCode(), BizCodeEnum.PRODUCT_UP_EXCEPTION.getMsg());
         }
-        if(status){
-            return R.error(BizCodeEnum.PRODUCT_UP_EXCEPTION.getCode(),BizCodeEnum.PRODUCT_UP_EXCEPTION.getMsg());
-        }else {
+        if (status) {
+            return R.error(BizCodeEnum.PRODUCT_UP_EXCEPTION.getCode(), BizCodeEnum.PRODUCT_UP_EXCEPTION.getMsg());
+        } else {
             return R.ok();
         }
 

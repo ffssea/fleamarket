@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.Map;
 
 
-
 /**
  * 成长值变化历史记录
  *
@@ -30,7 +29,7 @@ public class GrowthChangeHistoryController {
      */
     @RequestMapping("/list")
     //@RequiresPermissions("user:growthchangehistory:list")
-    public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = growthChangeHistoryService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -42,8 +41,8 @@ public class GrowthChangeHistoryController {
      */
     @RequestMapping("/info/{id}")
     //@RequiresPermissions("user:growthchangehistory:info")
-    public R info(@PathVariable("id") Long id){
-		GrowthChangeHistoryEntity growthChangeHistory = growthChangeHistoryService.getById(id);
+    public R info(@PathVariable("id") Long id) {
+        GrowthChangeHistoryEntity growthChangeHistory = growthChangeHistoryService.getById(id);
 
         return R.ok().put("growthChangeHistory", growthChangeHistory);
     }
@@ -53,8 +52,8 @@ public class GrowthChangeHistoryController {
      */
     @RequestMapping("/save")
     //@RequiresPermissions("user:growthchangehistory:save")
-    public R save(@RequestBody GrowthChangeHistoryEntity growthChangeHistory){
-		growthChangeHistoryService.save(growthChangeHistory);
+    public R save(@RequestBody GrowthChangeHistoryEntity growthChangeHistory) {
+        growthChangeHistoryService.save(growthChangeHistory);
 
         return R.ok();
     }
@@ -64,8 +63,8 @@ public class GrowthChangeHistoryController {
      */
     @RequestMapping("/update")
     //@RequiresPermissions("user:growthchangehistory:update")
-    public R update(@RequestBody GrowthChangeHistoryEntity growthChangeHistory){
-		growthChangeHistoryService.updateById(growthChangeHistory);
+    public R update(@RequestBody GrowthChangeHistoryEntity growthChangeHistory) {
+        growthChangeHistoryService.updateById(growthChangeHistory);
 
         return R.ok();
     }
@@ -75,8 +74,8 @@ public class GrowthChangeHistoryController {
      */
     @RequestMapping("/delete")
     //@RequiresPermissions("user:growthchangehistory:delete")
-    public R delete(@RequestBody Long[] ids){
-		growthChangeHistoryService.removeByIds(Arrays.asList(ids));
+    public R delete(@RequestBody Long[] ids) {
+        growthChangeHistoryService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
     }

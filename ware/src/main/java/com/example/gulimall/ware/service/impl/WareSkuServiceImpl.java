@@ -67,7 +67,7 @@ public class WareSkuServiceImpl extends ServiceImpl<WareSkuDao, WareSkuEntity> i
     @Override
     public void addStock(Long skuId, Long wareId, Integer skuNum) {
 
-        //1、判读如果没有这个库存记录新增
+        // 1、判读如果没有这个库存记录新增
         // List<WareSkuEntity> wareSkuEntities = wareSkuDao.selectList(
         //         new QueryWrapper<WareSkuEntity>().eq("sku_id", skuId).eq("ware_id", wareId));
         //

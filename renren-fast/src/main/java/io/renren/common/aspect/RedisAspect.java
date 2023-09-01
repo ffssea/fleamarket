@@ -1,8 +1,8 @@
 /**
  * Copyright (c) 2016-2019 人人开源 All rights reserved.
- *
+ * <p>
  * https://www.renren.io
- *
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -26,17 +26,17 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RedisAspect {
     private Logger logger = LoggerFactory.getLogger(getClass());
-    //是否开启redis缓存  true开启   false关闭
+    // 是否开启redis缓存  true开启   false关闭
     @Value("${spring.redis.open: false}")
     private boolean open;
 
     @Around("execution(* io.renren.common.utils.RedisUtils.*(..))")
     public Object around(ProceedingJoinPoint point) throws Throwable {
         Object result = null;
-        if(open){
-            try{
+        if (open) {
+            try {
                 result = point.proceed();
-            }catch (Exception e){
+            } catch (Exception e) {
                 logger.error("redis error", e);
                 throw new RRException("Redis服务异常");
             }

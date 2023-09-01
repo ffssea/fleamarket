@@ -1,8 +1,8 @@
 /**
  * Copyright (c) 2018 人人开源 All rights reserved.
- *
+ * <p>
  * https://www.renren.io
- *
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -42,14 +42,14 @@ public class DynamicDataSourceConfig {
         DynamicDataSource dynamicDataSource = new DynamicDataSource();
         dynamicDataSource.setTargetDataSources(getDynamicDataSource());
 
-        //默认数据源
+        // 默认数据源
         DruidDataSource defaultDataSource = DynamicDataSourceFactory.buildDruidDataSource(dataSourceProperties);
         dynamicDataSource.setDefaultTargetDataSource(defaultDataSource);
 
         return dynamicDataSource;
     }
 
-    private Map<Object, Object> getDynamicDataSource(){
+    private Map<Object, Object> getDynamicDataSource() {
         Map<String, DataSourceProperties> dataSourcePropertiesMap = properties.getDatasource();
         Map<Object, Object> targetDataSources = new HashMap<>(dataSourcePropertiesMap.size());
         dataSourcePropertiesMap.forEach((k, v) -> {

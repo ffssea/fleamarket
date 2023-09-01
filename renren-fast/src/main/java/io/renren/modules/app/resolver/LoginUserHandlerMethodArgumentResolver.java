@@ -1,8 +1,8 @@
 /**
  * Copyright (c) 2016-2019 人人开源 All rights reserved.
- *
+ * <p>
  * https://www.renren.io
- *
+ * <p>
  * 版权所有，侵权必究！
  */
 
@@ -39,14 +39,14 @@ public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgu
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer container,
                                   NativeWebRequest request, WebDataBinderFactory factory) throws Exception {
-        //获取用户ID
+        // 获取用户ID
         Object object = request.getAttribute(AuthorizationInterceptor.USER_KEY, RequestAttributes.SCOPE_REQUEST);
-        if(object == null){
+        if (object == null) {
             return null;
         }
 
-        //获取用户信息
-        UserEntity user = userService.getById((Long)object);
+        // 获取用户信息
+        UserEntity user = userService.getById((Long) object);
 
         return user;
     }
